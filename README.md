@@ -1,116 +1,171 @@
-# Metalbuild 🏗️
+<div align="center">
 
-Metalbuild is a modern web application designed for professional building estimators, architects, developers, and contractors. It facilitates accurate, real-time civil engineering material quantity estimation, cost budgeting, and AI-powered architectural blueprint analysis.
+# 🏗️ Matelbuild
+
+**Next-Generation Civil Engineering Quantity Estimation & AI Blueprint Analysis Platform**
+
+[![Next.js](https://img.shields.io/badge/Next.js-16.2.7-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.4-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-Database%20%26%20Auth-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
+
+<br />
+
+<p align="center">
+  <img src="public/hero_construction.png" alt="Matelbuild Banner" width="90%" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);" />
+</p>
+
+<p align="center">
+  <b>Eliminate estimation guesswork. Accelerate architectural workflows. Built for civil engineers, estimators, and contractors.</b>
+</p>
+
+[Explore Features](#-key-features) •
+[Tech Stack](#-tech-stack) •
+[Quickstart](#-getting-started) •
+[Project Structure](#-project-structure)
+
+</div>
+
+---
+
+## 🌟 Overview
+
+**Matelbuild** is an enterprise-ready civil engineering estimation suite and architectural drawing analyzer. By bridging standard civil engineering coefficients with computer vision algorithms, Matelbuild enables instant material takeoffs (concrete, reinforcement steel, masonry, excavation, and finishes) directly from user specifications and floor plans.
 
 ---
 
 ## 🚀 Key Features
 
-### 1. Unified Quantity Estimation Engine
-Calculates precise material requirements and cost assessments using standard civil construction coefficients. The logic resides in:
-* **Area & Footing Excavation**: Processes plot dimensions in feet/meters and soil excavation depths depending on the floors and soil bearing capacity ([lib/calculations/excavation.ts](file:///d:/Creation/Buildora/lib/calculations/excavation.ts)).
-* **Plain Cement Concrete (PCC)**: Computes mud-mat concrete foundation volumes ([lib/calculations/pcc.ts](file:///d:/Creation/Buildora/lib/calculations/pcc.ts)).
-* **Reinforced Cement Concrete (RCC)**: Comprehensive suite for structural elements including footings, columns, beams, slabs, and staircases. It calculates cement bags, sand volume, aggregate volume, and steel weight ([lib/calculations/rcc.ts](file:///d:/Creation/Buildora/lib/calculations/rcc.ts)).
-* **Masonry Walls**: Supports options for standard **Brick Walls** (9" external, 4.5" internal) and **AAC Block Walls** (6" blocks) with customizable wastage coefficients ([lib/calculations/bricks.ts](file:///d:/Creation/Buildora/lib/calculations/bricks.ts), [lib/calculations/aac.ts](file:///d:/Creation/Buildora/lib/calculations/aac.ts)).
-* **Finishes**: Estimates area requirements for plastering, interior/exterior painting, and flooring tiles ([lib/calculations/plaster.ts](file:///d:/Creation/Buildora/lib/calculations/plaster.ts), [lib/calculations/paint.ts](file:///d:/Creation/Buildora/lib/calculations/paint.ts), [lib/calculations/tiles.ts](file:///d:/Creation/Buildora/lib/calculations/tiles.ts)).
-* **Consolidated Calculator**: Unified interface executing calculations sequentially ([lib/calculations/index.ts](file:///d:/Creation/Buildora/lib/calculations/index.ts)).
+### 📐 1. Unified Quantity Estimation Engine
+Calculates exact material volumes, weights, and costs adhering to standard civil construction benchmarks:
 
-### 2. AI-Powered Blueprint & Floor Plan Analyzer
-Parses architectural drawing blueprints to generate digital models:
-* **Automated Object Detection**: AI detects walls, rooms, columns, beams, and door/window openings from drawing templates ([src/ai/blueprint-analyzer/roomDetector.ts](file:///d:/Creation/Buildora/src/ai/blueprint-analyzer/roomDetector.ts)).
-* **Dimension Extractor**: Extract spatial dimensions and wall thickness ([src/ai/blueprint-analyzer/dimensionExtractor.ts](file:///d:/Creation/Buildora/src/ai/blueprint-analyzer/dimensionExtractor.ts)).
-* **Confidence Engine & Auditing**: Highlights components requiring human verification ([src/ai/blueprint-analyzer/confidenceEngine.ts](file:///d:/Creation/Buildora/src/ai/blueprint-analyzer/confidenceEngine.ts)).
-* **Interactive Canvas Editor**: Visually overlays bounding boxes of detected rooms on the drawing. Users can modify boundaries, re-classify rooms, and edit material parameters ([app/ai-floor-plan/page.tsx](file:///d:/Creation/Buildora/app/ai-floor-plan/page.tsx)).
-* **AI Chat Assistant**: Interactive QA interface about the blueprint (e.g. brick counts, layout optimizations).
+* **Site Excavation & Earthwork**: Computes footing pit depths, slope factors, and soil excavation volumes based on soil bearing capacity and floor requirements.
+* **Plain Cement Concrete (PCC)**: High-accuracy foundation mud-mat volume calculations.
+* **Reinforced Cement Concrete (RCC)**: Comprehensive structural element engine covering isolated footings, columns, grade beams, roof slabs, and staircases. Dynamically outputs cement bags, fine aggregate (sand), coarse aggregate, and steel reinforcement tonnage.
+* **Masonry Systems**: Flexible estimation for traditional **Brickwork** (9" external / 4.5" internal) and modern **AAC Lightweight Blocks** (6") with customizable mortar ratios and wastage factors.
+* **Architectural Finishes**: Surface area estimation for wall plastering (internal & external), primer/paint coverage, and flooring tile counts.
 
-### 3. Construction Progress Tracker & Audit Log
-Allows comparing actual material utilization on-site against baseline calculations ([app/progress-tracker/page.tsx](file:///d:/Creation/Buildora/app/progress-tracker/page.tsx)):
-* **Multi-phase Timelines**: Track milestones (Excavation, Concrete Casting, Brickwork, Finishes).
-* **Material Variance Audit**: Visualizes warnings when material consumption exceeds estimated allowances (e.g., +50 cft of sand).
-
-### 4. Contractor & Vendor Marketplace
-Enables direct dispatching of BOQ (Bill of Quantities) to local suppliers and general contractors for bidding ([app/marketplace/page.tsx](file:///d:/Creation/Buildora/app/marketplace/page.tsx)):
-* Compare ratings, verified status, and pricing levels.
-* Send BOQ details directly for local market quotations.
+<p align="center">
+  <img src="public/materials_site.png" alt="Materials and Estimation" width="85%" style="border-radius: 8px;" />
+</p>
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+### 🤖 2. AI-Powered Blueprint & Floor Plan Analyzer
+Parses architectural drawings to digitize manual takeoff procedures:
 
-### Frontend
-* **Core**: Next.js 16 (App Router) & React 19.
-* **Styling**: Tailwind CSS v4.
-* **Iconography**: Lucide React.
-* **Typographics**: Inter / Geists.
+* **Automated Component Detection**: Computer vision models detect walls, column positions, room partitions, and door/window openings.
+* **Spatial Dimension Extractor**: Reads labeled dimension strings and computes wall thicknesses and room clearances.
+* **Confidence Engine**: Flags unverified or low-confidence boundaries for human-in-the-loop validation.
+* **Interactive Canvas Editor**: Modify detected bounding boxes, adjust room labels, and tune material schedules visually.
+* **Civil AI Assistant**: Conversational assistant to query material requirements, structural tips, and layout optimizations.
 
-### Backend & Database
-* **Database & Auth**: [Supabase](https://supabase.com/) with Row Level Security (RLS) policies.
-* **Database Schema**: Managed in [lib/db/schema.sql](file:///d:/Creation/Buildora/lib/db/schema.sql).
-  * `profiles`: Linked to Supabase Auth users.
-  * `projects`: Configures plot details, floor heights, room counts, and design quality tier.
-  * `materials` & `country_rates`: Handles region-based pricing (Economy, Standard, Premium) ([types/pricing.ts](file:///d:/Creation/Buildora/types/pricing.ts)).
-  * `estimates`: Persists computed JSON summaries of material quantities and costs.
-  * `blueprints`: Tracks uploaded plans and drawings.
-  * `ai_building_models`: Stores the parsed BIM-Lite JSON schema and confidence metrics.
+<p align="center">
+  <img src="public/blueprint_workspace.png" alt="AI Blueprint Workspace" width="85%" style="border-radius: 8px;" />
+</p>
+
+---
+
+### 📊 3. Construction Progress Tracker & Variance Audit
+Prevent project cost overruns with real-time site tracking:
+
+* **Milestone Timelines**: Track progression across stages: *Excavation &rarr; Substructure &rarr; Superstructure &rarr; Finishes*.
+* **Material Variance Engine**: Flags alerts whenever site material consumption exceeds theoretical calculations (e.g., steel overconsumption or mortar wastage warnings).
+
+---
+
+### 💼 4. Vendor Marketplace & Bill of Quantities (BOQ)
+* **Automated BOQ Generation**: Instant generation of standardized tender sheets for client presentation.
+* **Marketplace Dispatch**: Dispatch generated BOQ packets directly to local contractors and verified suppliers for competitive bids.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+|---|---|
+| **Framework** | [Next.js 16](https://nextjs.org/) (App Router), [React 19](https://react.dev/) |
+| **Language** | [TypeScript 5](https://www.typescriptlang.org/) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/), PostCSS |
+| **Icons & UI** | [Lucide React](https://lucide.dev/), Custom Engineering Motifs & Canvas Overlays |
+| **Database & Auth**| [Supabase](https://supabase.com/) (PostgreSQL with Row Level Security) |
+| **Document Processing**| [PDF.js](https://mozilla.github.io/pdf.js/) for CAD and PDF architectural sheet rendering |
 
 ---
 
 ## 📦 Project Structure
 
 ```bash
-Buildora/
-├── app/                  # Next.js pages (dashboard, AI floor plans, 3D visualizer, progress tracker, marketplace, auth)
-│   ├── (auth)/           # Authentication layout and login/signup flows
-│   ├── ai-floor-plan/    # Interactive AI drawing parser and editor
-│   ├── dashboard/        # Estimator dashboard with project overview and aggregates
-│   ├── marketplace/      # Contractor and vendor rates biddings
-│   ├── progress-tracker/ # Timeline and material audit log page
-│   └── visualizer-3d/    # WebGL visualizer mockup interface
-├── components/           # Reusable UI primitives (Cards, Buttons, Modals) and layouts
-├── lib/                  # Civil calculations engines and db scripts
-│   ├── calculations/     # Independent material quantity calculations
-│   ├── cost/             # Labor and general budgeting engines
-│   ├── db/               # Supabase query API and SQL initialization script
-│   ├── estimation/       # Consolidated calculation runner
-│   └── pricing/          # Local rate resolvers
-├── src/                  # Core algorithmic and service modules
-│   ├── ai/               # AI Floor plan parsing scripts (detectors, confidence engines)
-│   └── services/         # Client-side services (upload wrappers, validators)
-└── types/                # Project and pricing TypeScript interface typings
+Matelbuild/
+├── app/                  # Next.js App Router (Pages, Layouts, API Routes)
+│   ├── (auth)/           # Authentication (Login, Signup, Password Recovery)
+│   ├── ai-floor-plan/    # Interactive AI drawing parser and canvas editor
+│   ├── dashboard/        # Central projects hub and analytics metrics
+│   ├── marketplace/      # Supplier and contractor bidding board
+│   └── progress-tracker/ # Milestone tracking and variance audit log
+├── components/           # Reusable UI component library
+│   ├── ai/               # AI Assistant dialogue and blueprint modals
+│   ├── dashboard/        # Metric cards, SVG charts, headers, and sidebars
+│   ├── projects/         # BOQ generators, calculators, and export tools
+│   └── ui/               # Buttons, form controls, cards, and modal dialogs
+├── lib/                  # Civil engineering logic & calculations
+│   ├── ai/               # Vision prompts, symbol knowledge bases, classifiers
+│   ├── calculations/     # Civil formulas (excavation, RCC, PCC, masonry, finishes)
+│   ├── cost/             # Labor tariffs and project budgeting engines
+│   ├── db/               # Supabase database clients, schema, and queries
+│   ├── estimation/       # Consolidated estimation orchestrators
+│   └── pricing/          # Regional material rates database
+├── public/               # Static visual media, blueprints, and diagrams
+└── types/                # Strict TypeScript interfaces for projects, estimates & BOQs
 ```
 
 ---
 
-## 🚀 Getting Started
+## ⚡ Getting Started
 
 ### Prerequisites
-Make sure you have Node.js (v18+) and npm installed.
 
-### Setup and Installation
+* **Node.js**: `v18.0.0` or higher
+* **Package Manager**: `npm` (or `pnpm` / `yarn`)
+* **Supabase Account**: A free Supabase project for database and authentication
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd Buildora
-   ```
+### 1. Clone the Repository
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+```bash
+git clone https://github.com/Manas96-afk/Matelbuild.git
+cd Matelbuild
+```
 
-3. **Database Configuration:**
-   Apply the setup queries from [schema.sql](file:///d:/Creation/Buildora/lib/db/schema.sql) in your Supabase SQL editor.
+### 2. Install Dependencies
 
-4. **Environment Setup:**
-   Create a `.env.local` file in the root directory:
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anonymous_api_key
-   ```
+```bash
+npm install
+```
 
-5. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+### 3. Configure Database
+
+Apply the SQL schema found in [`lib/db/schema.sql`](lib/db/schema.sql) in your **Supabase SQL Editor** to initialize the required tables and security policies.
+
+### 4. Setup Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 5. Launch the Development Server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - feel free to use and adapt for your civil and architectural engineering workflows.
