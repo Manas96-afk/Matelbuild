@@ -23,18 +23,12 @@ Parses architectural drawing blueprints to generate digital models:
 * **Interactive Canvas Editor**: Visually overlays bounding boxes of detected rooms on the drawing. Users can modify boundaries, re-classify rooms, and edit material parameters ([app/ai-floor-plan/page.tsx](file:///d:/Creation/Buildora/app/ai-floor-plan/page.tsx)).
 * **AI Chat Assistant**: Interactive QA interface about the blueprint (e.g. brick counts, layout optimizations).
 
-### 3. Interactive 3D Visualizer
-WebGL-based structural visualizer allowing interactive inspection of estimated framing models ([app/visualizer-3d/page.tsx](file:///d:/Creation/Buildora/app/visualizer-3d/page.tsx)):
-* **Render Modes**: Wireframe, Solid, and Textured model modes.
-* **Spatial Controls**: Rotate and shift camera viewpoints in real-time.
-* **Material Inspection**: Highlights foundation footing and reinforced framing layers.
-
-### 4. Construction Progress Tracker & Audit Log
+### 3. Construction Progress Tracker & Audit Log
 Allows comparing actual material utilization on-site against baseline calculations ([app/progress-tracker/page.tsx](file:///d:/Creation/Buildora/app/progress-tracker/page.tsx)):
 * **Multi-phase Timelines**: Track milestones (Excavation, Concrete Casting, Brickwork, Finishes).
 * **Material Variance Audit**: Visualizes warnings when material consumption exceeds estimated allowances (e.g., +50 cft of sand).
 
-### 5. Contractor & Vendor Marketplace
+### 4. Contractor & Vendor Marketplace
 Enables direct dispatching of BOQ (Bill of Quantities) to local suppliers and general contractors for bidding ([app/marketplace/page.tsx](file:///d:/Creation/Buildora/app/marketplace/page.tsx)):
 * Compare ratings, verified status, and pricing levels.
 * Send BOQ details directly for local market quotations.
